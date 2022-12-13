@@ -1,7 +1,9 @@
+import RobotList from "./features/robot/RobotList";
+import './app.scss'
 function App() {
   return (
-    <div className="container">
-      <h1>Robots</h1>
+    <div className="home">
+      <RobotList />
     </div>
   );
 }

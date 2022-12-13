@@ -45,7 +45,7 @@ const robotsSlice = createSlice({
             .addCase(fetchRobots.fulfilled, (state, action) => {
                 state.status = 'idle'
                 // Add any fetched posts to the array
-                state.robots = state.robots.concat(action.payload)
+                state.robots = state.robots.concat(action.payload.data)
             })
             .addCase(fetchRobots.rejected, (state, action) => {
                 state.status = 'failed'
