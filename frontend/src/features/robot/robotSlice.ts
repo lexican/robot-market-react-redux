@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { RootState, AppThunk } from '../../app/store';
+import { RootState } from '../../app/store';
 
 export interface IRobot {
     name: number;
@@ -57,4 +57,7 @@ const robotsSlice = createSlice({
 export default robotsSlice.reducer;
 
 export const selectAllRobots = (state: RootState) => state.robot.robots;
+
+export const robotsLoadingStatus = (state: RootState) => state.robot.status;
+
 
