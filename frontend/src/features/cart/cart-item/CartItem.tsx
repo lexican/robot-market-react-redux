@@ -8,7 +8,8 @@ interface IProp {
 }
 
 const CartItem: FC<IProp> = ({ robot }) => {
-  const { name, image, price, quantity, totalPrice } = robot;
+  const { name, image, price, quantity } = robot;
+  const totalPrice = price * quantity;
 
   return (
     <div className="cart-item">
