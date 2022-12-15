@@ -1,0 +1,14 @@
+.cart-list {
+  position: absolute;
+  top: 11vh;
+  right: 0;
+  height: 89vh;
+  width: 300px;
+  background: #eeeeee;
+  .empty-cart {
+    text-align: center;
+    color: #000000;
+    font-weight: 800;
+    margin-top: 40vh;
+  }
+}

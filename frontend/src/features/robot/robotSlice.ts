@@ -3,7 +3,7 @@ import axios from 'axios';
 import { RootState } from '../../app/store';
 
 export interface IRobot {
-    name: number;
+    name: string;
     image: string;
     price: number;
     stock: number;

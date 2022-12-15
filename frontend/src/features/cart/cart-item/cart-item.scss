@@ -1,0 +1,28 @@
+.cart-item {
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 12px;
+  margin: 10px 20px;
+  img {
+    width: 70px;
+    height: 90px;
+    margin-right: 10px;
+  }
+
+  .name,
+  .total-price {
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: bold;
+  }
+  .price {
+    font-size: 12px;
+  }
+  button {
+    width: 30px;
+    height: 30px;
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
