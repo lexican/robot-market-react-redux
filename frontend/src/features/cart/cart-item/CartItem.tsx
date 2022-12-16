@@ -1,6 +1,8 @@
 import { FC } from "react";
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { formatPrice } from "../../../utils";
 import { IRobot } from "../../robot/robotSlice";
+import { decrementQuantity, incrementQuantity } from "../cartSlice";
 import "./cart-item.scss";
 
 interface IProp {
@@ -8,6 +10,8 @@ interface IProp {
 }
 
 const CartItem: FC<IProp> = ({ robot }) => {
+  const dispatch = useDispatch();
+
   const { name, image, price, quantity } = robot;
   const totalPrice = price * quantity;
 
@@ -18,9 +22,21 @@ const CartItem: FC<IProp> = ({ robot }) => {
         <h3 className="name">{name}</h3>
         <div className="price">{formatPrice(price)}</div>
         <div className="d-flex mt-3">
-          <button onClick={() => {}}>-</button>
+          <button
+            onClick={() => {
+              dispatch(decrementQuantity(robot));
+            }}
+          >
+            -
+          </button>
           <span className="m-2">{quantity}</span>
-          <button onClick={() => {}}>+</button>
+          <button
+            onClick={() => {
+              dispatch(incrementQuantity(robot));
+            }}
+          >
+            +
+          </button>
         </div>
         <div className="total-price">{formatPrice(totalPrice)}</div>
       </div>

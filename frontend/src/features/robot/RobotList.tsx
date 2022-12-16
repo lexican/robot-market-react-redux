@@ -18,15 +18,15 @@ export default function RobotList(): JSX.Element {
     dispatch(fetchRobots());
   }, []);
 
+  if (loading === "loading") {
+    return <div>Loading ...</div>;
+  }
+
   return (
     <div className="row">
-      {loading == "loading" ? (
-        <div>Loading ...</div>
-      ) : (
-        robots.map((robot: IRobot) => {
-          return <RobotItem key={robot.name} robot={robot} />;
-        })
-      )}
+      {robots.map((robot: IRobot) => {
+        return <RobotItem key={robot.name} robot={robot} />;
+      })}
     </div>
   );
 }
