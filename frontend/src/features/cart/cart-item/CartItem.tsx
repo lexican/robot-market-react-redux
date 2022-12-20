@@ -23,7 +23,8 @@ const CartItem: FC<IProp> = ({ robot }) => {
         <div className="price">{formatPrice(price)}</div>
         <div className="d-flex mt-3">
           <button
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               dispatch(decrementQuantity(robot));
             }}
           >
@@ -31,7 +32,8 @@ const CartItem: FC<IProp> = ({ robot }) => {
           </button>
           <span className="m-2">{quantity}</span>
           <button
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               dispatch(incrementQuantity(robot));
             }}
           >

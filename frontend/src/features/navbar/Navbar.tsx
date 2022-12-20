@@ -11,9 +11,8 @@ const Navbar = () => {
     <nav className="navbar">
       <h1>Robot Market</h1>
       <button
-        className="btn cart-btn"
+        className="cart-btn"
         onClick={() => {
-          console.log("Clicked");
           dispatch(toggleIsShowCart(!showCart));
         }}
       >

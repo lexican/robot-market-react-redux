@@ -1,16 +1,21 @@
 import RobotList from "./features/robot/RobotList";
 import "./app.scss";
 import Navbar from "./features/navbar/Navbar";
-import CartList from "./features/cart/CartList";
+import CartListModal from "./features/cart/CartList";
+import { useAppSelector } from "./app/hooks";
+import { isShowCart } from "./features/cart/cartSlice";
 function App() {
+  const showCart = useAppSelector(isShowCart);
   return (
-    <div className="home">
-      <Navbar />
-      <div className="home-container">
-        <RobotList />
+    <>
+      <div className="home">
+        <Navbar />
+        <div className="home-container">
+          <RobotList />
+        </div>
       </div>
-      <CartList />
-    </div>
+      {showCart && <CartListModal />}
+    </>
   );
 }
 
