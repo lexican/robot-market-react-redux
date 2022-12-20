@@ -5,11 +5,13 @@ import { IRobot } from '../robot/robotSlice'
 interface ICartState {
     cartItems: IRobot[];
     total: number;
+    isShowCart: boolean;
 }
 
 const initialState: ICartState = {
     cartItems: [],
-    total: 0
+    total: 0,
+    isShowCart: false
 }
 
 const cartSlice = createSlice({
@@ -38,16 +40,21 @@ const cartSlice = createSlice({
                 if (itemInCart.quantity > 1) {
                     itemInCart.quantity--;
                 } else {
-                    const cartItems = state.cartItems.filter((cart) => cart.name.toLowerCase() != action.payload.name.toLowerCase())
+                    const cartItems = state.cartItems.filter((cart) => cart.name.toLowerCase() !== action.payload.name.toLowerCase())
                     state.cartItems = cartItems
                 }
 
             }
+        },
+
+        toggleIsShowCart: (state, action) => {
+            state.isShowCart = action.payload;
         }
     },
 })
 
 export default cartSlice.reducer;
-export const { addToCart, incrementQuantity, decrementQuantity } = cartSlice.actions;
+export const { addToCart, incrementQuantity, decrementQuantity, toggleIsShowCart } = cartSlice.actions;
 
 export const cartItems = (state: RootState) => state.cart.cartItems;
+export const isShowCart = (state: RootState) => state.cart.isShowCart;
