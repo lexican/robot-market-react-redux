@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../app/hooks";
+import { formatPrice } from "../../utils";
 import { IRobot } from "../robot/robotSlice";
 import CartItem from "./cart-item/CartItem";
 import "./cart-list.scss";
@@ -21,6 +22,10 @@ const CartListModal = () => {
     };
   }, [el, modalRoot]);
 
+  const total = carts.reduce((currentTotal, item) => {
+    return item.price * item.quantity + currentTotal;
+  }, 0);
+
   return ReactDOM.createPortal(
     <div
       className="cart-list-modal"
@@ -39,6 +44,7 @@ const CartListModal = () => {
             <div className="empty-cart">Your cart is currently empty</div>
           )}
         </div>
+        <span className="total-price">Total : {formatPrice(total)}</span>
       </div>
     </div>,
     el.current
