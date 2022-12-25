@@ -57,4 +57,5 @@ export default cartSlice.reducer;
 export const { addToCart, incrementQuantity, decrementQuantity, toggleIsShowCart } = cartSlice.actions;
 
 export const cartItems = (state: RootState) => state.cart.cartItems;
+export const cartItemsLength = (state: RootState) => state.cart.cartItems.length;
 export const isShowCart = (state: RootState) => state.cart.isShowCart;

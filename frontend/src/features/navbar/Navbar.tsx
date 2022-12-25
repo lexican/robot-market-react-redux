@@ -1,11 +1,16 @@
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../app/hooks";
 import CartIcon from "../../components/cart-icon/CartIcon";
-import { isShowCart, toggleIsShowCart } from "../cart/cartSlice";
+import {
+  cartItemsLength,
+  isShowCart,
+  toggleIsShowCart,
+} from "../cart/cartSlice";
 import "./navbar.scss";
 const Navbar = () => {
   const dispatch = useAppDispatch();
   const showCart = useSelector(isShowCart);
+  const cartLength = useSelector(cartItemsLength);
 
   return (
     <nav className="navbar">
@@ -16,7 +21,9 @@ const Navbar = () => {
           dispatch(toggleIsShowCart(!showCart));
         }}
       >
-        Cart <CartIcon />
+        Cart
+        <span className="badge rounded-pill bg-primary">{cartLength}</span>
+        <CartIcon />
       </button>
     </nav>
   );
