@@ -5,13 +5,13 @@ import {
   fetchRobots,
   IRobot,
   robotsLoadingStatus,
-  selectAllRobots,
+  selectAllFilteredRobots,
 } from "./robotSlice";
 import RobotItem from "../../components/robot-item/RobotItem";
 
 export default function RobotList(): JSX.Element {
   const dispatch = useAppDispatch();
-  const robots = useSelector(selectAllRobots);
+  const filteredRobots = useSelector(selectAllFilteredRobots);
   const loading = useSelector(robotsLoadingStatus);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function RobotList(): JSX.Element {
 
   return (
     <div className="row">
-      {robots.map((robot: IRobot) => {
+      {filteredRobots.map((robot: IRobot) => {
         return <RobotItem key={robot.name} robot={robot} />;
       })}
     </div>

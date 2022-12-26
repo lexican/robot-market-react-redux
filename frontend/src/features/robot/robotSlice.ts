@@ -15,6 +15,7 @@ export interface IRobot {
 
 export interface RobotState {
     robots: IRobot[];
+    filteredRobots: IRobot[];
     status: 'idle' | 'loading' | 'failed';
     error: string;
 }
@@ -27,6 +28,7 @@ export const fetchRobots = createAsyncThunk('/api', async () => {
 
 const initialState: RobotState = {
     robots: [],
+    filteredRobots: [],
     status: 'idle',
     error: ''
 };
@@ -35,7 +37,12 @@ const robotsSlice = createSlice({
     name: 'robots',
     initialState,
     reducers: {
-        // omit existing reducers here
+        filterRobots: (state, action) => {
+            const filteredRobots = state.robots.filter((robot) =>
+                robot.name.toLowerCase().includes(action.payload.toLowerCase())
+            );
+            state.filteredRobots = action.payload.length > 0 ? filteredRobots : [...state.robots]
+        }
     },
     extraReducers(builder) {
         builder
@@ -46,6 +53,7 @@ const robotsSlice = createSlice({
                 state.status = 'idle'
                 // Add any fetched posts to the array
                 state.robots = state.robots.concat(action.payload.data)
+                state.filteredRobots = state.filteredRobots.concat(action.payload.data)
             })
             .addCase(fetchRobots.rejected, (state, action) => {
                 state.status = 'failed'
@@ -56,8 +64,8 @@ const robotsSlice = createSlice({
 
 export default robotsSlice.reducer;
 
-export const selectAllRobots = (state: RootState) => state.robot.robots;
+export const { filterRobots } = robotsSlice.actions;
+
+export const selectAllFilteredRobots = (state: RootState) => state.robot.filteredRobots;
 
 export const robotsLoadingStatus = (state: RootState) => state.robot.status;
-
-
