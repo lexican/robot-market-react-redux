@@ -22,8 +22,8 @@ cd robot-market-react-redux
 
 ```bash
 cd frontend
-yarn install
-yarn start
+yarn or npm install 
+yarn start or npm run start
 ```
 
 Open http://localhost:3000 with your browser to see the result.
@@ -33,8 +33,8 @@ Open http://localhost:3000 with your browser to see the result.
 
 ```bash
 cd server
-yarn install
-yarn start
+yarn or npm install
+yarn start or npm run start
 ```
 Open http://localhost:8000./api/robots with your browser to see the result.
 
